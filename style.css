@@ -12,7 +12,6 @@ body {
    color: var(--fontcolor);
    background-color: var(--backgroundcolor);
    box-sizing: border-box;
-   font-size: 1.15rem;
 }
 
 /* ------------- */
@@ -25,7 +24,8 @@ header {
    align-items: center;
    padding: 1rem 2rem;
    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-
+   position: relative;
+   z-index: 1;
    img:hover {
       cursor: pointer;
    }
@@ -75,7 +75,7 @@ header {
 /* ------------- */
 
 .content-container {
-   height: 100vh;
+   min-height: 100vh;
    width: 80%;
    display: flex;
    flex-direction: column;
@@ -89,21 +89,27 @@ header {
    }
 }
 
+/* ------------- */
+/*    Hero       */
+/* ------------- */
+
 .hero-content-wrapper {
    width: 100%;
    display: flex;
    flex-direction: column;
    align-items: center;
-   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+   box-shadow: 0px 15px 15px -5px rgba(0, 0, 0, 0.3);
+   z-index: 1;
 }
 
 .hero-content {
-   width: 80%;
+   width: 60%;
    position: relative;
 
    .company-image {
       position: absolute;
-      top: -20%;
+      top: 0;
+      transform: translateY(-70%);
       left: 0;
       background-color: white;
       width: 3rem;
@@ -112,6 +118,14 @@ header {
       padding: 1rem;
       border-radius: 10px;
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+         width: 4rem;
+         height: 4rem;
+         object-fit: contain;
+      }
    }
 }
 
@@ -192,12 +206,15 @@ header {
    justify-content: space-between;
    border: 1px solid rgba(0, 0, 0, 0.24);
    border-radius: 10px;
-   padding: 0.5rem 1rem;
+   padding: 0.8rem 1rem;
    transition: var(--transition);
    margin-bottom: 1rem;
    &:hover {
       cursor: pointer;
       background-color: rgba(128, 128, 128, 0.1);
+   }
+   div:first-child {
+      font-weight: bold;
    }
    .percent-icon {
       padding: 0.1rem 0.4rem;
@@ -205,6 +222,8 @@ header {
       border-radius: 100%;
       height: 14px;
       width: 14px;
+      color: white;
+      margin-right: 8px;
    }
 }
 
@@ -213,26 +232,175 @@ header {
    align-items: center;
    font-size: 14px;
    font-weight: 600;
-   gap: 2rem;
+   gap: 1.5rem;
    padding: 1rem;
    div {
       display: flex;
       gap: 0.5rem;
+      transition: var(--transition);
+      &:hover {
+         cursor: pointer;
+      }
    }
    img {
       width: 1.2rem;
       height: 1.2rem;
    }
+   .search-bar-foods-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+
+      div {
+         padding: 0.2rem 0.6rem;
+         border-radius: 20px;
+      }
+      div:hover {
+         background-color: rgba(128, 128, 128, 0.1);
+      }
+   }
+   .food-category-icon {
+      width: 1.2rem;
+      height: 1.2rem;
+      background-color: rgba(128, 128, 128, 0.1);
+      border-radius: 100%;
+      padding: 0.7rem;
+      &:hover {
+         background-color: rgba(128, 128, 128, 0.2);
+      }
+   }
+   .food-category-icon-active {
+      background-color: #262626;
+      color: white;
+      padding: 0.4rem 0.6rem !important;
+      &:hover {
+         background-color: #262626 !important;
+         opacity: 0.9;
+      }
+   }
+   .arrow {
+      filter: invert(1);
+   }
 }
+
+/* ------------- */
+/*     Dishes    */
+/* ------------- */
+
+.dishes-main-container {
+   background-color: #fcfcfc;
+   width: 100%;
+   margin-bottom: 1rem;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   .headline-favourits-icon {
+      width: 60%;
+      margin-bottom: 1.5rem;
+      img {
+         width: 1.2rem;
+         height: 1.2rem;
+         padding-left: 0.7rem;
+      }
+   }
+}
+
+.dishes-single-wrapper {
+   width: 57%;
+   display: flex;
+   flex-direction: column;
+   border: 1px solid rgba(0, 0, 0, 0.2);
+   border-radius: 10px;
+   padding: 1rem;
+   transition: var(--transition);
+   margin-bottom: 1rem;
+   &:hover {
+      cursor: pointer;
+      background-color: rgba(128, 128, 128, 0.1);
+   }
+
+   .dishes-single-head-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+      .dishes-single-headline {
+         margin: 0;
+         font-size: 1.25rem;
+         display: flex;
+         align-items: center;
+         gap: 0.5rem;
+         img {
+            padding-top: 5px;
+            width: 1.2rem;
+            height: 1.2rem;
+         }
+      }
+      .counter-icon {
+         border-radius: 100%;
+         padding: 0.25rem;
+         border: 2px solid #f36805b0;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         transition: var(--transition);
+         z-index: 999;
+         &:hover {
+            cursor: pointer;
+            background-color: var(--accentcolor);
+         }
+         img {
+            width: 20px;
+            height: 20px;
+            filter: invert(1);
+         }
+      }
+   }
+
+   .dishes-single-description {
+      width: 80%;
+      margin-bottom: 0.8rem;
+   }
+
+   .dishes-single-price {
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      gap: 0.3rem;
+      margin-bottom: 0.2rem;
+   }
+}
+
+.dishes-all {
+   img {
+      width: 60%;
+      border-radius: 20px;
+      height: 20vh;
+      object-fit: cover;
+   }
+}
+
 /* ------------- */
 /* Shopping-Cart */
 /* ------------- */
 
 .shopping-cart-container {
-   height: 100vh;
+   height: 500vh;
    width: 20%;
-   background-color: rgba(0, 0, 255, 0.11);
+   background-color: var(--backgroundcolor);
    position: absolute;
    top: 0;
    right: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   box-shadow: -3px 0 10px -5px rgba(0, 0, 0, 0.5);
+   z-index: 2;
+}
+
+.delivery-option-wrapper {
+   display: flex;
+   background-color: #ffffff;
 }
