@@ -6,6 +6,10 @@
    --transition: all 150ms ease-in;
 }
 
+* {
+   scroll-behavior: smooth;
+}
+
 body {
    margin: 0;
    font-family: var(--fontfamily);
@@ -388,7 +392,7 @@ header {
 /* ------------- */
 
 .shopping-cart-container {
-   height: 500vh;
+   height: 100vh;
    width: 20%;
    background-color: var(--backgroundcolor);
    position: absolute;
@@ -399,6 +403,7 @@ header {
    align-items: center;
    box-shadow: -3px 0 10px -5px rgba(0, 0, 0, 0.5);
    z-index: 2;
+   transition: var(--transition);
 }
 
 .delivery-option-wrapper {
@@ -426,8 +431,6 @@ header {
 
 .selected-dish-wrapper {
    width: 95%;
-   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-   padding-bottom: 0.8rem;
    margin-bottom: 1rem;
    .selected-dish-head {
       display: flex;
@@ -435,6 +438,7 @@ header {
       align-items: center;
       width: 100%;
       margin-bottom: 0.8rem;
+      padding-top: 0.8rem;
       div {
          padding-left: 1rem;
          padding-right: 1rem;
@@ -465,10 +469,16 @@ header {
       justify-content: space-between;
       align-items: center;
       width: 100%;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      &:last-child {
+         border: none;
+         padding-bottom: 2rem;
+      }
       .selected-dish-addcomment {
          padding-left: 2.2rem;
          text-decoration: underline;
-
+         width: 30%;
          &:hover {
             cursor: pointer;
             text-decoration: none;
