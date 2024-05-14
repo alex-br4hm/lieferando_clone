@@ -332,6 +332,7 @@ header {
          display: flex;
          align-items: center;
          gap: 0.5rem;
+         width: 60%;
          img {
             padding-top: 5px;
             width: 1.2rem;

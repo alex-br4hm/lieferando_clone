@@ -1,7 +1,6 @@
 let products = [
    {
-      "category": "favourite",
-      "headline": "Beliebt",
+      "category": "Beliebt",
       "imgSrc": "",
       "categoryProducts": [
          {
@@ -23,7 +22,7 @@ let products = [
    },
    {
       "category": "Burger",
-      "imgSrc": "",
+      "imgSrc": "./src/img/dishes/burger_section",
       "categoryProducts": [
          {
             "productName": "Hamburger",
@@ -93,6 +92,7 @@ let products = [
    },
    {
       "category": "Fritten",
+      "imgSrc": "./src/img/dishes/fries_section",
       "categoryProducts": [
          {
             "productName": "Fritten Pur",
@@ -126,6 +126,7 @@ let products = [
    },
    {
       "category": "Buddha Bowls",
+      "imgSrc": "./src/img/dishes/bowl_section",
       "categoryProducts": [
          {
             "productName": "Buddha Bowls Klassik (vegan)",
@@ -151,6 +152,7 @@ let products = [
    },
    {
       "category": "Hähnchen, Gulasch & Co.",
+      "imgSrc": "./src/img/dishes/homestyle_section",
       "categoryProducts": [
          {
             "productName": "Rindergulasch mit Heichelheimer Klößen und Rotkraut",
@@ -189,6 +191,7 @@ let products = [
    },
    {
       "category": "Getränke alkoholfrei",
+      "imgSrc": "./src/img/dishes/drinks_section",
       "categoryProducts": [
          {
             "productName": "Coca-Cola 0,4l (MEHRWEG)",
@@ -241,6 +244,7 @@ let products = [
    },
    {
       "category": "Getränke mit Alkohol",
+      "imgSrc": "./src/img/dishes/alcoholica_section",
       "categoryProducts": [
          {
             "productName": "Bayreuther Hell 0,33l",
