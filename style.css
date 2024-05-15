@@ -101,7 +101,6 @@ header {
    width: 100%;
    display: flex;
    flex-direction: column;
-
    align-items: center;
    box-shadow: 0px 15px 15px -5px rgba(0, 0, 0, 0.3);
    z-index: 1;
@@ -240,62 +239,93 @@ header {
    font-weight: 600;
    gap: 1.5rem;
    padding: 1rem;
-   position: fixed;
+   position: sticky;
    top: 0;
-   div {
-      display: flex;
-      gap: 0.5rem;
-      transition: var(--transition);
-      &:hover {
-         cursor: pointer;
-      }
-   }
-   img {
-      width: 1.2rem;
-      height: 1.2rem;
-   }
-   .search-bar-foods-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      white-space: nowrap;
-      overflow: hidden;
-      a {
-         color: inherit;
-         text-decoration: none;
-      }
-      div {
-         padding: 0.2rem 0.6rem;
-         border-radius: 20px;
-      }
-      div:hover {
-         background-color: rgba(128, 128, 128, 0.1);
-      }
-   }
-   .food-category-icon {
-      width: 1.2rem;
-      height: 1.2rem;
-      background-color: rgba(128, 128, 128, 0.1);
-      border-radius: 100%;
-      padding: 0.7rem;
-      &:hover {
-         background-color: rgba(128, 128, 128, 0.2);
-      }
-   }
-   .food-category-icon-active {
-      background-color: #262626;
-      color: white;
-      padding: 0.4rem 0.6rem !important;
-      &:hover {
-         background-color: #262626 !important;
-         opacity: 0.9;
-      }
-   }
-   .arrow {
-      filter: invert(1);
-   }
+   /* position: fixed;
+   top: 0; */
 }
 
+.search-bar-wrapper div {
+   display: flex;
+   gap: 0.5rem;
+   transition: var(--transition);
+}
+
+.search-bar-wrapper div:hover {
+   cursor: pointer;
+}
+
+.search-bar-wrapper img {
+   width: 1.2rem;
+   height: 1.2rem;
+}
+
+.search-bar-foods-wrapper {
+   display: flex;
+   align-items: center;
+   gap: 1.2rem;
+   white-space: nowrap;
+   overflow-x: scroll;
+   overflow-y: hidden;
+   scrollbar-color: #333333a4 transparent;
+   scrollbar-width: thin;
+}
+
+.search-bar-foods-wrapper a {
+   color: inherit;
+   text-decoration: none;
+}
+
+.search-bar-foods-wrapper div {
+   padding: 0.2rem 0.6rem;
+   border-radius: 20px;
+}
+
+.search-bar-foods-wrapper div:hover {
+   background-color: rgba(128, 128, 128, 0.1);
+}
+
+.food-category-icon {
+   width: 1.2rem;
+   height: 1.2rem;
+   background-color: rgba(128, 128, 128, 0.1);
+   border-radius: 50%;
+   padding: 0.7rem;
+}
+
+.food-category-icon:hover {
+   background-color: rgba(128, 128, 128, 0.2);
+}
+
+.food-category-icon-active {
+   background-color: #262626;
+   color: white;
+   padding: 0.4rem 0.6rem !important;
+}
+
+.food-category-icon-active:hover {
+   background-color: #262626 !important;
+   opacity: 0.9;
+}
+
+.arrow {
+   filter: invert(1);
+}
+
+.search-bar-wrapper-top {
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 10000;
+   width: 100%;
+   background-color: white;
+   .search-bar-foods-wrapper {
+      overflow: hidden;
+   }
+   .food-category-icon {
+      display: none;
+   }
+}
 /* ------------- */
 /*     Dishes    */
 /* ------------- */
@@ -406,6 +436,10 @@ header {
    img {
       width: 3rem;
       height: 3rem;
+   }
+
+   h2 {
+      text-align: center;
    }
    div {
       text-align: center;

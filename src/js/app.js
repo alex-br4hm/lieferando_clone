@@ -219,4 +219,9 @@ window.addEventListener("scroll", function () {
    } else {
       shoppingCartContainer.style.position = "fixed";
    }
+   if (window.scrollY >= 750) {
+      searchBarContainer.classList.add("search-bar-wrapper-top");
+   } else {
+      searchBarContainer.classList.remove("search-bar-wrapper-top");
+   }
 });
