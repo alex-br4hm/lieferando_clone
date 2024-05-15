@@ -61,7 +61,7 @@
                      <div class="more-information">Mehr erfahren</div>
                   </div>
 
-                  <div class="search-bar-wrapper">
+                  <div class="search-bar-wrapper" id="searchBarContainer">
                      <div class="food-category-icon">
                         <img class="search-icon" src="./src/img/search-icon.png" alt="search icon" />
                      </div>
@@ -69,12 +69,12 @@
                         <div class="food-category-icon-active">
                            Beliebt<img class="favourites-icon" src="./src/img/heart_liked.png" alt="heart icon" />
                         </div>
-                        <div>Burger</div>
-                        <div>Fritten</div>
-                        <div>Buddha Bowls</div>
-                        <div>Hähnchen, Gulasch & Co.</div>
-                        <div>Getränke alkoholfrei</div>
-                        <div>Getränke mit Alkoholfrei</div>
+                        <a href="#burger"><div>Burger</div></a>
+                        <a href="#fries"><div>Fritten</div></a>
+                        <a href="#bowls"><div>Buddha Bowls</div></a>
+                        <a href="#homestyle"><div>Hähnchen, Gulasch & Co.</div></a>
+                        <a href="#softdrinks"><div>Getränke alkoholfrei</div></a>
+                        <a href="#alocoholics"><div>Getränke mit Alkoholfrei</div></a>
                      </div>
                      <div class="food-category-icon arrow"><img src="./src/img/arrow_icon.png" alt="arrow icon" /></div>
                      <div class="food-category-icon"><img src="./src/img/list_icon.png" alt="list icon" /></div>
@@ -203,27 +203,22 @@
             <div class="selected-dish-wrapper" id="shoppingCartProductContainer"></div>
 
             <div class="costs-overview-wrapper" id="costsContainer">
-               <!-- <div class="costs-sum-wrapper costs-wrapper">
-                  <div>Zwischensumme</div>
-                  <div class="costs-sum"><span>19.50</span>€</div>
+               <div class="empty-shopping-cart">
+                  <img src="./src/img/shopping_bag.png" alt="shopping bag icon" />
+                  <h2>Fülle deinen Warenkorb</h2>
+                  <div>Füge einige leckere Gerichte aus der Speisekarte hinzu und bestelle dein Essen.</div>
                </div>
-               <div class="costs-delivery-wrapper costs-wrapper">
-                  <div>Lieferkosten</div>
-                  <div class="costs-sum"><span>0.49</span>€</div>
-               </div>
-               <div class="costs-service-wrapper costs-wrapper">
-                  <div>Servicegebühr <img src="./src/img/info_icon.png" alt="info_icon" /></div>
-                  <div class="costs-sum"><span>0.99</span>€</div>
-               </div>
-               <div class="costs-all-wrapper costs-wrapper">
-                  <div>Gesamt</div>
-                  <div class="costs-sum"><span>21.48</span>€</div>
-               </div>
-               <div class="pay-button">
-                  <div>Bezahlen</div>
-                  <div class="costs-pay-button">(<span>21.48</span>€)</div>
-               </div> -->
             </div>
+         </div>
+      </div>
+
+      <div class="order-succes-container d-none" id="orderSuccesContainer">
+         <div class="order-succes-wrapper">
+            <h2>Vielen Dank für Ihre Bestellung</h2>
+            <div class="order-succes-text">
+               In Kürze bekommen Sie Ihre Bestellbescheinigung per Mail und Ihr Essen per Mensch.
+            </div>
+            <div class="close-btn" onclick="closeOrderSucces()">Schließen</div>
          </div>
       </div>
 

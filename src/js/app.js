@@ -3,6 +3,7 @@ const dishesAllContainer = document.getElementById("dishesAllContainer");
 const shoppingCartContainer = document.getElementById("shoppingCartContainer");
 const shoppingCartProductContainer = document.getElementById("shoppingCartProductContainer");
 const costsContainer = document.getElementById("costsContainer");
+const searchBarContainer = document.getElementById("searchBarContainer");
 renderFavouriteProducts();
 renderAllProducts();
 
@@ -39,7 +40,7 @@ function renderAllProducts() {
    dishesAllContainer.innerHTML = "";
    for (let i = 1; i < products.length; i++) {
       dishesAllContainer.innerHTML += ` 
-       <img src="${products[i].imgSrc}.png" alt="" />
+       <img src="${products[i].imgSrc}.png" alt="" id="${products[i].id}"/>
        <h2 class="headline-favourits-icon">${products[i].category}
        <img src="./src/img/heart_liked.png" alt="heart icon" /></h2>`;
       let categoryProducts = products[i].categoryProducts;
@@ -68,25 +69,42 @@ function renderAllProducts() {
 
 function addToShoppingCart(productName, productPrice) {
    let productPriceFloat = parseFloat(productPrice).toFixed(2);
-   let itemAmount = 1;
-   newShoppingCartProduct = {
-      "itemName": `${productName}`,
-      "itemPrice": `${productPriceFloat}`,
-      "itemAmount": `${itemAmount}`,
-   };
+   let itemAlreadyExists = false;
 
-   shoppingCartProducts.push(newShoppingCartProduct);
-   renderShoppingCartItem();
+   for (let i = 0; i < shoppingCartProducts.length; i++) {
+      if (shoppingCartProducts[i].itemName === productName) {
+         shoppingCartProducts[i].itemAmount++;
+         itemAlreadyExists = true;
+         break;
+      }
+   }
+
+   if (!itemAlreadyExists) {
+      let newShoppingCartProduct = {
+         "itemName": productName,
+         "itemPrice": productPriceFloat,
+         "itemAmount": 1,
+      };
+      shoppingCartProducts.push(newShoppingCartProduct);
+   }
+
+   renderShoppingCart();
 }
 
-function renderShoppingCartItem() {
+function renderShoppingCart() {
    calculateCosts();
+   if (shoppingCartProducts.length === 0) {
+      shoppingCartEmptyStandard();
+   } else if (shoppingCartProducts.length > 3) {
+      shoppingCartOverloadPrevention();
+   } else shoppingCartStopOverloadPrevention();
+
    shoppingCartProductContainer.innerHTML = "";
    for (let i = 0; i < shoppingCartProducts.length; i++) {
       shoppingCartProductContainer.innerHTML += `
            <div class="selected-dish-head">
               <div class="selected-dish-head-left">
-                 <div class="selected-dish-count">1</div>
+                 <div class="selected-dish-count">${shoppingCartProducts[i].itemAmount}</div>
                  <div class="selected-dish-name">${shoppingCartProducts[i].itemName}</div>
               </div>
               <div class="selected-dish-price"><span>${shoppingCartProducts[i].itemPrice}</span>€</div>
@@ -103,22 +121,41 @@ function renderShoppingCartItem() {
            </div>
         `;
    }
-   calculateCosts();
+}
+
+function shoppingCartOverloadPrevention() {
+   costsContainer.classList.add("overload-prevention-costs");
+   shoppingCartProductContainer.classList.add("overload-prevention-cart-products");
+}
+
+function shoppingCartStopOverloadPrevention() {
+   costsContainer.classList.remove("overload-prevention-costs");
+   shoppingCartProductContainer.classList.remove("overload-prevention-cart-products");
+}
+
+function shoppingCartEmptyStandard() {
+   costsContainer.innerHTML = `
+   <div class="empty-shopping-cart">
+   <img src="./src/img/shopping_bag.png" alt="shopping bag icon" />
+   <h2>Fülle deinen Warenkorb</h2>
+   <div>Füge einige leckere Gerichte aus der Speisekarte hinzu und bestelle dein Essen.</div>
+   </div>
+   `;
 }
 
 function increaseQuantityFromItem(i) {
    shoppingCartProducts[i].itemAmount = parseFloat(shoppingCartProducts[i].itemAmount) + 1;
    console.table(shoppingCartProducts);
-   renderShoppingCartItem();
+   renderShoppingCart();
 }
 
 function removeItemFromShoppingCart(i) {
    if (shoppingCartProducts[i].itemAmount > 1) {
       shoppingCartProducts[i].itemAmount = parseFloat(shoppingCartProducts[i].itemAmount) - 1;
-      renderShoppingCartItem();
+      renderShoppingCart();
    } else {
       shoppingCartProducts.splice(i, 1);
-      renderShoppingCartItem();
+      renderShoppingCart();
    }
 }
 
@@ -157,11 +194,21 @@ function renderCosts(subTotal, costsTotal) {
           <div>Gesamt</div>
           <div class="costs-sum"><span>${formattedCostsTotal}</span>€</div>
        </div>
-       <div class="pay-button">
+       <div class="pay-button" onclick="sendOrderSucces()">
           <div>Bezahlen</div>
           <div class="costs-pay-button">(<span>${formattedCostsTotal}</span>€)</div>
        </div>
     `;
+}
+
+function sendOrderSucces() {
+   document.getElementById("orderSuccesContainer").classList.remove("d-none");
+   shoppingCartProducts = [];
+   renderShoppingCart();
+}
+
+function closeOrderSucces() {
+   document.getElementById("orderSuccesContainer").classList.add("d-none");
 }
 
 window.addEventListener("scroll", function () {

@@ -22,6 +22,7 @@ let products = [
    },
    {
       "category": "Burger",
+      "id": "burger",
       "imgSrc": "./src/img/dishes/burger_section",
       "categoryProducts": [
          {
@@ -92,6 +93,7 @@ let products = [
    },
    {
       "category": "Fritten",
+      "id": "fries",
       "imgSrc": "./src/img/dishes/fries_section",
       "categoryProducts": [
          {
@@ -126,6 +128,7 @@ let products = [
    },
    {
       "category": "Buddha Bowls",
+      "id": "bowls",
       "imgSrc": "./src/img/dishes/bowl_section",
       "categoryProducts": [
          {
@@ -152,6 +155,7 @@ let products = [
    },
    {
       "category": "Hähnchen, Gulasch & Co.",
+      "id": "homestyle",
       "imgSrc": "./src/img/dishes/homestyle_section",
       "categoryProducts": [
          {
@@ -191,6 +195,7 @@ let products = [
    },
    {
       "category": "Getränke alkoholfrei",
+      "id": "softdrinks",
       "imgSrc": "./src/img/dishes/drinks_section",
       "categoryProducts": [
          {
@@ -244,6 +249,7 @@ let products = [
    },
    {
       "category": "Getränke mit Alkohol",
+      "id": "aloholics",
       "imgSrc": "./src/img/dishes/alcoholica_section",
       "categoryProducts": [
          {
