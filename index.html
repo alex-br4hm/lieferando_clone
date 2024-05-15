@@ -66,7 +66,7 @@
                         <img class="search-icon" src="./src/img/search-icon.png" alt="search icon" />
                      </div>
                      <div class="search-bar-foods-wrapper">
-                        <div class="food-category-icon-active">
+                        <div>
                            Beliebt<img class="favourites-icon" src="./src/img/heart_liked.png" alt="heart icon" />
                         </div>
                         <a href="#burger"><div>Burger</div></a>
@@ -195,6 +195,7 @@
 
          <div class="shopping-cart-container" id="shoppingCartContainer">
             <h2>Warenkorb</h2>
+            <img src="./src/img/close_icon.png" alt="" id="shoppingCartCloseBtn" onclick="closeShoppingCartMobile()" />
             <div class="delivery-option-wrapper">
                <div class="delivery-option">Lieferung</div>
                <div class="pickup-option unshoosen-delivery">Abholung</div>
@@ -212,6 +213,8 @@
          </div>
       </div>
 
+      <div class="shopping-cart-btn-mobile-wrapper" id="shoppingCartBtnContainer"></div>
+
       <div class="order-succes-container d-none" id="orderSuccesContainer">
          <div class="order-succes-wrapper">
             <h2>Vielen Dank für Ihre Bestellung</h2>
@@ -221,7 +224,22 @@
             <div class="close-btn" onclick="closeOrderSucces()">Schließen</div>
          </div>
       </div>
-
+      <footer>
+         <div class="footer-top">
+            <div>Ein Restaurant empfehlen</div>
+            <div>Ein Restaurant anmelden</div>
+            <div>Jobs</div>
+            <div>AGB</div>
+            <div>Datenschutzerklärung</div>
+            <div>Impressum</div>
+            <div>Verwendung von Cookies</div>
+            <div>Bug Bounty</div>
+            <div>Ethik-Hotline</div>
+         </div>
+         <div class="footer-bottom">
+            <div>© 2024 Alexander Haehnlein</div>
+         </div>
+      </footer>
       <script src="./src/js/appData.js"></script>
       <script src="./src/js/HTMLtemplates.js"></script>
       <script src="./src/js/app.js"></script>

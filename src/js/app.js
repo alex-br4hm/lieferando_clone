@@ -4,8 +4,11 @@ const shoppingCartContainer = document.getElementById("shoppingCartContainer");
 const shoppingCartProductContainer = document.getElementById("shoppingCartProductContainer");
 const costsContainer = document.getElementById("costsContainer");
 const searchBarContainer = document.getElementById("searchBarContainer");
+const shoppingCartBtnContainer = document.getElementById("shoppingCartBtnContainer");
+
 renderFavouriteProducts();
 renderAllProducts();
+renderShoppingCartBtnMobile();
 
 function renderFavouriteProducts() {
    dishesFavouriteContainer.innerHTML = "";
@@ -103,6 +106,7 @@ function renderShoppingCart() {
    for (let i = 0; i < shoppingCartProducts.length; i++) {
       shoppingCartProductContainer.innerHTML += `
            <div class="selected-dish-head">
+           
               <div class="selected-dish-head-left">
                  <div class="selected-dish-count">${shoppingCartProducts[i].itemAmount}</div>
                  <div class="selected-dish-name">${shoppingCartProducts[i].itemName}</div>
@@ -199,6 +203,8 @@ function renderCosts(subTotal, costsTotal) {
           <div class="costs-pay-button">(<span>${formattedCostsTotal}</span>€)</div>
        </div>
     `;
+
+   renderShoppingCartBtnMobile(formattedCostsTotal);
 }
 
 function sendOrderSucces() {
@@ -209,6 +215,29 @@ function sendOrderSucces() {
 
 function closeOrderSucces() {
    document.getElementById("orderSuccesContainer").classList.add("d-none");
+}
+
+function renderShoppingCartBtnMobile(formattedCostsTotal) {
+   if (shoppingCartProducts.length === 0) {
+      formattedCostsTotal = "0,00";
+   }
+   shoppingCartBtnContainer.innerHTML = `
+   <div class="shopping-cart-btn-mobile pay-button" onclick="openShoppingCartMobile()">
+            <div class="shopping-bag-counter">
+               <img src="./src/img/shopping_bag.png" alt="" />
+               <span>${shoppingCartProducts.length}</span>
+            </div>
+            Warenkorb<span>(${formattedCostsTotal}€)</span>
+         </div>
+   `;
+}
+
+function openShoppingCartMobile() {
+   shoppingCartContainer.style.setProperty("display", "flex");
+}
+
+function closeShoppingCartMobile() {
+   shoppingCartContainer.style.setProperty("display", "none");
 }
 
 window.addEventListener("scroll", function () {
