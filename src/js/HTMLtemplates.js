@@ -11,12 +11,14 @@ function renderFavouriteProductsHTML(products, i) {
                 <h3 class="dishes-single-headline">
                    ${product.productName}<img src="./src/img/info_icon.png" alt="information icon" />
                 </h3>
-                <div class="counter-icon" onclick="addToShoppingCart('${product.productName}', ${product.productPrice})">
+                <div class="counter-icon" onclick="addToShoppingCart('${product.productName}', ${
+         product.productPrice
+      })">
                    <img src="./src/img/add_icon.png" alt="add icon" class="add-icon" />
                 </div>
              </div>
              <div class="dishes-single-description">
-                ${product.productDescription}
+             ${product.productDescription ? product.productDescription : ""}
              </div>
              <div class="dishes-single-price"><span id="dishPrice">${product.productPrice}</span>€</div>
           </div>
