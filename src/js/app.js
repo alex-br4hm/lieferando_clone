@@ -5,6 +5,9 @@ const shoppingCartProductContainer = document.getElementById("shoppingCartProduc
 const costsContainer = document.getElementById("costsContainer");
 const searchBarContainer = document.getElementById("searchBarContainer");
 const shoppingCartBtnContainer = document.getElementById("shoppingCartBtnContainer");
+const shoppingCartContainerMobile = document.getElementById("shoppingCartContainerMobile");
+const shoppingCartProductContainerMobile = document.getElementById("shoppingCartProductContainerMobile");
+const costsContainerMobile = document.getElementById("costsContainerMobile");
 
 renderFavouriteProducts();
 renderAllProducts();
@@ -14,7 +17,7 @@ function renderFavouriteProducts() {
    dishesFavouriteContainer.innerHTML = "";
    for (let i = 0; i < 1; i++) {
       dishesFavouriteContainer.innerHTML += ` 
-      <h2 class="headline-favourits-icon">${products[i].category}
+      <h2 class="headline-favourits-icon" id="favourits">${products[i].category}
       <img src="./src/img/heart_liked.png" alt="heart icon" /></h2>`;
       let categoryProducts = products[i].categoryProducts;
       for (let j = 0; j < categoryProducts.length; j++) {
@@ -25,8 +28,8 @@ function renderFavouriteProducts() {
                 <h3 class="dishes-single-headline">
                    ${product.productName}<img src="./src/img/info_icon.png" alt="information icon" />
                 </h3>
-                <div class="counter-icon">
-                   <img src="./src/img/add_icon.png" alt="add icon" class="add-icon" onclick="addToShoppingCart('${product.productName}', ${product.productPrice})"/>
+                <div class="counter-icon" onclick="addToShoppingCart('${product.productName}', ${product.productPrice})">
+                   <img src="./src/img/add_icon.png" alt="add icon" class="add-icon" />
                 </div>
              </div>
              <div class="dishes-single-description">
@@ -55,10 +58,10 @@ function renderAllProducts() {
                  <h3 class="dishes-single-headline">
                     ${product.productName}<img src="./src/img/info_icon.png" alt="information icon" />
                  </h3>
-                 <div class="counter-icon">
-                    <img src="./src/img/add_icon.png" alt="add icon" class="add-icon" onclick="addToShoppingCart('${
-                       product.productName
-                    }', ${product.productPrice})"/>
+                 <div class="counter-icon" onclick="addToShoppingCart('${product.productName}', ${
+            product.productPrice
+         })">
+                    <img src="./src/img/add_icon.png" alt="add icon" class="add-icon" />
                  </div>
               </div>
               <div class="dishes-single-description">
@@ -92,6 +95,7 @@ function addToShoppingCart(productName, productPrice) {
    }
 
    renderShoppingCart();
+   renderShoppingCartMobile();
 }
 
 function renderShoppingCart() {
@@ -130,11 +134,13 @@ function renderShoppingCart() {
 function shoppingCartOverloadPrevention() {
    costsContainer.classList.add("overload-prevention-costs");
    shoppingCartProductContainer.classList.add("overload-prevention-cart-products");
+   shoppingCartProductContainerMobile.classList.add("overload-prevention-cart-products");
 }
 
 function shoppingCartStopOverloadPrevention() {
    costsContainer.classList.remove("overload-prevention-costs");
    shoppingCartProductContainer.classList.remove("overload-prevention-cart-products");
+   shoppingCartProductContainerMobile.classList.remove("overload-prevention-cart-products");
 }
 
 function shoppingCartEmptyStandard() {
@@ -157,9 +163,11 @@ function removeItemFromShoppingCart(i) {
    if (shoppingCartProducts[i].itemAmount > 1) {
       shoppingCartProducts[i].itemAmount = parseFloat(shoppingCartProducts[i].itemAmount) - 1;
       renderShoppingCart();
+      renderShoppingCartMobile();
    } else {
       shoppingCartProducts.splice(i, 1);
       renderShoppingCart();
+      renderShoppingCartMobile();
    }
 }
 
@@ -174,6 +182,7 @@ function calculateCosts() {
    costsTotal = parseFloat(costsTotal.toFixed(2));
 
    renderCosts(subTotal, costsTotal);
+   renderCostsMobile(subTotal, costsTotal);
 }
 
 function renderCosts(subTotal, costsTotal) {
@@ -207,10 +216,44 @@ function renderCosts(subTotal, costsTotal) {
    renderShoppingCartBtnMobile(formattedCostsTotal);
 }
 
+function renderCostsMobile(subTotal, costsTotal) {
+   costsContainerMobile.innerHTML = "";
+   const formattedSubTotal = subTotal.toFixed(2);
+   const formattedCostsTotal = costsTotal.toFixed(2);
+
+   costsContainerMobile.innerHTML = `
+       <div class="costs-sum-wrapper costs-wrapper">
+          <div>Zwischensumme</div>
+          <div class="costs-sum"><span>${formattedSubTotal}</span>€</div>
+       </div>
+       <div class="costs-delivery-wrapper costs-wrapper">
+          <div>Lieferkosten</div>
+          <div class="costs-sum"><span>0.49</span>€</div>
+       </div>
+       <div class="costs-service-wrapper costs-wrapper">
+          <div>Servicegebühr <img src="./src/img/info_icon.png" alt="info_icon" /></div>
+          <div class="costs-sum"><span>0.99</span>€</div>
+       </div>
+       <div class="costs-all-wrapper costs-wrapper">
+          <div>Gesamt</div>
+          <div class="costs-sum"><span>${formattedCostsTotal}</span>€</div>
+       </div>
+       <div class="pay-button" onclick="sendOrderSucces()">
+          <div>Bezahlen</div>
+          <div class="costs-pay-button">(<span>${formattedCostsTotal}</span>€)</div>
+       </div>
+    `;
+
+   renderShoppingCartBtnMobile(formattedCostsTotal);
+}
+
 function sendOrderSucces() {
-   document.getElementById("orderSuccesContainer").classList.remove("d-none");
-   shoppingCartProducts = [];
-   renderShoppingCart();
+   if (shoppingCartProducts.length > 0) {
+      document.getElementById("orderSuccesContainer").classList.remove("d-none");
+      shoppingCartProducts = [];
+      renderShoppingCart();
+      renderShoppingCartMobile();
+   }
 }
 
 function closeOrderSucces() {
@@ -232,12 +275,46 @@ function renderShoppingCartBtnMobile(formattedCostsTotal) {
    `;
 }
 
+function renderShoppingCartMobile() {
+   calculateCosts();
+   if (shoppingCartProducts.length === 0) {
+      shoppingCartEmptyStandard();
+   } else if (shoppingCartProducts.length > 3) {
+      shoppingCartOverloadPrevention();
+   } else shoppingCartStopOverloadPrevention();
+
+   shoppingCartProductContainerMobile.innerHTML = "";
+   for (let i = 0; i < shoppingCartProducts.length; i++) {
+      shoppingCartProductContainerMobile.innerHTML += `
+           <div class="selected-dish-head">
+           
+              <div class="selected-dish-head-left">
+                 <div class="selected-dish-count">${shoppingCartProducts[i].itemAmount}</div>
+                 <div class="selected-dish-name">${shoppingCartProducts[i].itemName}</div>
+              </div>
+              <div class="selected-dish-price"><span>${shoppingCartProducts[i].itemPrice}</span>€</div>
+           </div>
+           <div class="selected-dish-bottom">
+              <div class="selected-dish-addcomment">Anmerkung hinzufügen</div>
+              <div class="selected-dish-left-counter">
+                 <div class="selected-dish-counter-icon">
+                    <img src="./src/img/remove_icon.png" alt="remove icon" onclick="removeItemFromShoppingCart(${i})"/>
+                 </div>
+                 <div class="selected-dish-price"><span>${shoppingCartProducts[i].itemAmount}</span></div>
+                 <div class="selected-dish-counter-icon"><img src="./src/img/add_icon.png" alt="add icon" onclick="increaseQuantityFromItem(${i})"/></div>
+              </div>
+           </div>
+        `;
+   }
+}
+
 function openShoppingCartMobile() {
-   shoppingCartContainer.style.setProperty("display", "flex");
+   shoppingCartContainerMobile.style.setProperty("display", "flex");
+   renderShoppingCartMobile();
 }
 
 function closeShoppingCartMobile() {
-   shoppingCartContainer.style.setProperty("display", "none");
+   shoppingCartContainerMobile.style.setProperty("display", "none");
 }
 
 window.addEventListener("scroll", function () {

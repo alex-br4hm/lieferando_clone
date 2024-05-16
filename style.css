@@ -238,8 +238,7 @@ header {
    font-weight: 600;
    gap: 1.5rem;
    padding: 1rem;
-   position: sticky;
-   top: 0;
+
    /* position: fixed;
    top: 0; */
 }
@@ -813,7 +812,7 @@ footer {
       margin-bottom: 1rem;
    }
    .selected-dish-wrapper {
-      width: 70%;
+      width: 80%;
       margin-bottom: 1rem;
       font-size: 1.1rem;
       .selected-dish-bottom {
@@ -867,6 +866,10 @@ footer {
       }
    }
 
+   .overload-prevention-cart-products {
+      max-height: 35%;
+   }
+
    footer {
       height: auto;
       align-items: start;
@@ -905,6 +908,39 @@ footer {
    }
    100% {
       transform: rotate(90deg);
+   }
+}
+
+@media (max-width: 600px) {
+   .search-bar-wrapper {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+      gap: 1.5rem;
+      padding: 1rem;
+      .food-category-icon {
+         display: none;
+      }
+   }
+   .order-succes-container {
+      .order-succes-wrapper {
+         h2 {
+            text-align: center;
+         }
+         .order-succes-text {
+            width: 100%;
+            text-align: center;
+         }
+      }
+   }
+}
+
+@media (max-width: 440px) {
+   header {
+      .header-right-side-wrapper {
+         display: none;
+      }
    }
 }
 
