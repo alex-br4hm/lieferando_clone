@@ -798,6 +798,7 @@ footer {
       bottom: 2vh;
       width: 80%;
       padding: 1rem 2rem;
+      z-index: 2;
    }
 
    .shopping-cart-container {
