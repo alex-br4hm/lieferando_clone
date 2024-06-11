@@ -713,6 +713,7 @@ footer {
    .shopping-cart-container {
       width: 30%;
    }
+
    .overload-prevention-costs {
       position: fixed;
       bottom: 0;
@@ -802,12 +803,17 @@ footer {
    }
 
    .shopping-cart-container {
+      background: white;
+      height: 100vh;
+      align-items: center;
+      flex-direction: column;
+      display: flex;
       width: 100%;
       position: fixed !important;
       z-index: 9999;
       top: 0;
-      display: none;
    }
+
    .selected-dish-wrapper {
       width: 70%;
       margin-bottom: 1rem;
@@ -898,6 +904,12 @@ footer {
          padding-left: 2rem;
       }
    }
+
+   .order-succes-container {
+      .order-succes-wrapper {
+         margin: 0 1rem;
+      }
+   }
 }
 
 @keyframes rotateCloseX {
@@ -941,6 +953,16 @@ footer {
    header {
       .header-right-side-wrapper {
          display: none;
+      }
+   }
+   .shopping-cart-btn-mobile {
+      width: 70%;
+      font-size: 16px;
+   }
+
+   .order-succes-container {
+      .order-succes-wrapper {
+         padding: 1.5rem;
       }
    }
 }
