@@ -53,14 +53,14 @@ function renderAllProductsContentHTML(product) {
        </div>`;
 }
 
-function renderShoppingCartHTML(i) {
+function renderShoppingCartHTML(i, subtotalItem) {
    shoppingCartProductContainer.innerHTML += `
        <div class="selected-dish-head">
            <div class="selected-dish-head-left">
                <div class="selected-dish-count">${shoppingCartProducts[i].itemAmount}</div>
                <div class="selected-dish-name">${shoppingCartProducts[i].itemName}</div>
            </div>
-           <div class="selected-dish-price"><span>${shoppingCartProducts[i].itemPrice}</span>€</div>
+           <div class="selected-dish-price"><span>${subtotalItem}</span>€</div>
        </div>
        <div class="selected-dish-bottom">
            <div class="selected-dish-addcomment">Anmerkung hinzufügen</div>

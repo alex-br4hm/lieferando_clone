@@ -62,9 +62,12 @@ function generateNewShoppingCartItem(productName, productPriceFloat) {
 
 function renderShoppingCart() {
    checkShoppingCartProductsAmount();
+
    shoppingCartProductContainer.innerHTML = "";
    for (let i = 0; i < shoppingCartProducts.length; i++) {
-      renderShoppingCartHTML(i);
+      let subtotalItem = parseFloat(shoppingCartProducts[i].itemPrice * shoppingCartProducts[i].itemAmount);
+      subtotalItem = subtotalItem.toFixed(2);
+      renderShoppingCartHTML(i, subtotalItem);
    }
 }
 
