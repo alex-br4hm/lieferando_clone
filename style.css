@@ -717,6 +717,13 @@ footer {
          }
       }
    }
+   a {
+      color: rgba(0, 0, 0, 0.5);
+      transition: all 150ms ease-in-out;
+      &:hover {
+         color: inherit;
+      }
+   }
 }
 
 .shopping-cart-btn-mobile {
